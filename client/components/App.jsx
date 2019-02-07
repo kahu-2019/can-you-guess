@@ -1,4 +1,5 @@
 import React from 'react'
+import Form from './Form'
 
 import Form from './Form'
 import LocationDisplay from './LocationDisplay'
