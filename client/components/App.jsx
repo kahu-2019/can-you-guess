@@ -2,6 +2,7 @@ import React from 'react'
 import Form from './Form'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -13,6 +14,8 @@ class App extends React.Component {
     </div>
   )
 =======
+=======
+>>>>>>> development
 import Form from './Form'
 import LocationDisplay from './LocationDisplay'
 import WeatherDisplay from './WeatherDisplay'
@@ -66,8 +69,11 @@ class App extends React.Component {
       </div>
     )
   }
+<<<<<<< HEAD
 >>>>>>> development
 }
+=======
+>>>>>>> development
 }
 
 export default App
