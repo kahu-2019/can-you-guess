@@ -2,9 +2,6 @@ const express = require('express')
 const router = express.Router()
 const request = require('superagent')
 
-const geoDataAPI = `https://api.opencagedata.com/geocode/v1/json?key=b53078ada62e421992e1cb70df7558e3&q=${input.city}+${input.country}&abbrev=1&limit=1`
-const darkSkyAPI = `https://api.darksky.net/forecast/a9dfec139f2489c8d9b399ccbe55db3c/${place.lat},${place.long}?units=ca`
-
 
 router.use(express.json())
 
@@ -12,19 +9,22 @@ router.post('/', (req, res) => {
     return getCity(req.body)
     .then(place => {
         return getWeather(place)
+        .then(data => {
+            return res.json(data)
+        })
     })
     .catch(err => {
-        res.status(500).send('Server error')
+        res.status(500).send('1 error')
     })
 })
 
 function getCity(input){
-    var city = encodeURI(geoDataAPI)
+    var city = encodeURI(`https://api.opencagedata.com/geocode/v1/json?key=b53078ada62e421992e1cb70df7558e3&q=${input.city}+${input.country}&abbrev=1&limit=1`)
     return request.get(city)
     .then(data => {
         var coords = {}
-        coords.lat = data.results[0].annotations.geometry.lat
-        coords.long = data.results[0].annotations.geometry.long
+        coords.lat = JSON.parse(data.text).results[0].geometry.lat
+        coords.long = JSON.parse(data.text).results[0].geometry.lng
         return coords
     })
     .catch(err => {
@@ -33,9 +33,9 @@ function getCity(input){
 }
 
 function getWeather(place){
-    return request.get(darkSkyAPI)
+    return request.get(`https://api.darksky.net/forecast/a9dfec139f2489c8d9b399ccbe55db3c/${place.lat},${place.long}?units=ca`)
     .then(data => {
-        return res.json(data)
+        return JSON.parse(data.text)
     })
     .catch(err => {
         res.status(500).send('Server error')
