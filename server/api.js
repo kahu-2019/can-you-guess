@@ -19,7 +19,8 @@ router.post('/', (req, res) => {
 })
 
 function getCity(input){
-    return request.get(geoDataAPI)
+    var city = encodeURI(geoDataAPI)
+    return request.get(city)
     .then(data => {
         var coords = {}
         coords.lat = data.results[0].annotations.geometry.lat
