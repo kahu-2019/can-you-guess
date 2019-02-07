@@ -1,5 +1,7 @@
 import React from 'react'
 import Form from './Form'
+import LocationDisplay from './LocationDisplay'
+import WeatherDisplay from './WeatherDisplay'
 
 class App extends React.Component {
   constructor(props) {
@@ -22,11 +24,14 @@ class App extends React.Component {
     })
   }
 
-  render(){
+  render() {
     console.log(this.state)
     return (
       <div>
-      <Form sendData={this.getData}/>
+        <h1>Hello World!</h1>
+        <Form sendData={this.getData}/>
+        {/* <LocationDisplay locations={dbData}/>
+        <WeatherDisplay weather={apiData}/> */}
       </div>
     )
   }
