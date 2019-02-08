@@ -25,13 +25,15 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     return (
       <div>
         <h1>Hello World!</h1>
         <Form sendData={this.getData}/>
-        {/* <LocationDisplay locations={dbData}/>
-        <WeatherDisplay weather={apiData}/> */}
+        {(this.state.country || this.state.city) && <div>
+          <LocationDisplay state={this.state}/>
+          <WeatherDisplay weather={this.state}/> */}
+        </div>}
       </div>
     )
   }
