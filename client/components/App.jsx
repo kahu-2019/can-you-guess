@@ -2,6 +2,7 @@ import React from 'react'
 import Form from './Form'
 import LocationDisplay from './LocationDisplay'
 import WeatherDisplay from './WeatherDisplay'
+import KiwiWeather from './KiwiWeather'
 
 class App extends React.Component {
   constructor(props) {
@@ -32,7 +33,8 @@ class App extends React.Component {
         <Form sendData={this.getData}/>
         {(this.state.country || this.state.city) && <div>
           <LocationDisplay state={this.state}/>
-          <WeatherDisplay weather={this.state}/> */}
+          <WeatherDisplay weather={this.state}/>
+          <KiwiWeather weather={this.state} />
         </div>}
       </div>
     )
