@@ -1,11 +1,32 @@
 const express = require('express')
 const router = express.Router()
 const request = require('superagent')
+const db = require('./db/functions/dbFunctions')
 
 
 router.use(express.json())
 
-router.post('/', (req, res) => {
+router.get('/getLocations', (req, res) => {
+    return db.getLocations()
+        .then(data =>{
+            return res.json(data)
+        })
+        .catch(err => {
+            res.status(500).send('Server error')
+        })
+})
+
+router.post('/getLocations', (req, res) => {
+    return db.addLocation({city: req.body.city, country: req.body.country})
+        .then(data =>{
+            return res.end()
+        })
+        .catch(err => {
+            res.status(500).send('Server error')
+        })
+})
+
+router.post('/getWeather', (req, res) => {
     return getCity(req.body)
     .then(place => {
         return getWeather(place)
@@ -14,7 +35,7 @@ router.post('/', (req, res) => {
         })
     })
     .catch(err => {
-        res.status(500).send('1 error')
+        res.status(500).send('Server error')
     })
 })
 

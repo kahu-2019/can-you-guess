@@ -3,6 +3,8 @@ import Form from './Form'
 import LocationDisplay from './LocationDisplay'
 import WeatherDisplay from './WeatherDisplay'
 
+import {addLocation} from '../api'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -17,6 +19,7 @@ class App extends React.Component {
   }
 
   getData(inputCity, inputCountry, inputData) {
+    addLocation(inputCity, inputCountry)
     this.setState({
       city: inputCity,
       country: inputCountry,
