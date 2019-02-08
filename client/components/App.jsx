@@ -4,6 +4,8 @@ import LocationDisplay from './LocationDisplay'
 import WeatherDisplay from './WeatherDisplay'
 import KiwiWeather from './KiwiWeather'
 
+import {addLocation} from '../api'
+
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -18,6 +20,7 @@ class App extends React.Component {
   }
 
   getData(inputCity, inputCountry, inputData) {
+    addLocation(inputCity, inputCountry)
     this.setState({
       city: inputCity,
       country: inputCountry,
